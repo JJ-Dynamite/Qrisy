@@ -1,15 +1,14 @@
 let submitted=false
+let set=false
+
+const form = document.querySelector('.email-form');
+const username = document.querySelector('.name');
+const email = document.querySelector('.email');
+const errorElement = document.querySelector('.error-message');
+
 function onSubmitted() {
     submitted ? alert('Your message has been sent. Thank you!') : ''
   }
-  
-const form = document.querySelector('.email-form');//
-const username = document.querySelector('.name');//
-const email = document.querySelector('.email');//
-// const subject = document.getElementById('subject');
-// const Message = document.getElementById('Message');
-const errorElement = document.querySelector('.error-message');
-let set=false
 
 form.addEventListener('submit', e => {
     if(set)e.preventDefault();

@@ -65,7 +65,7 @@
 							<a class="nav-link" href="#blog">Blog</a>
 						</li>
 					</ul>
-					<a href="#" class="btn btn-brand">Order Online</a>
+					<a href="#reservatio" class="btn btn-brand">Order Online</a>
 				</div>
 			</div>
 		</nav>
@@ -103,7 +103,7 @@
 								<h1 class="display-1 my-3 fw-bold text-white">
 									Fresh & Tasty Food
 								</h1>
-								<a href="#" class="btn btn-brand"
+								<a href="#reservatio" class="btn btn-brand"
 									>Reservation</a
 								>
 							</div>
@@ -1169,26 +1169,24 @@
 		</section>
 
 		<!-- Reservation -->
+		<iframe
+			name="hidden"
+			id="hidden_iframe"
+			title="formTarget"
+			onload="onSubmitted()"
+		></iframe>
 		<section id="reservation">
 			<div class="container">
 				<div class="row">
 					<div class="col-12 intro-text">
 						<h1>Book Your Table</h1>
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing
-							elit. Recusandae sint temporibus natus optio eveniet
-							nobis accusantium?
-						</p>
 					</div>
 				</div>
-                <iframe name="hidden" id="hidden_iframe" title="formTarget" onload="onSubmitted()"></iframe>
 				<form
-					method="POST"
-					action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSccJAN2SIjc6_9_72AYMr6Q25qjr1UWDWmaXqz2nKRJd6U0xA/formResponse"
-					role="form"
-                    onsubmit="submitted=true" 
-                    target="hidden"
+					onsubmit="submitted=true"
+					target="hidden"
 					class="row justify-content-center email-form"
+					id="submit-form"
 				>
 					<div class="col-lg-8">
 						<div class="row g-3">
@@ -1196,7 +1194,7 @@
 								<input
 									type="text"
 									class="form-control name"
-									name="entry.1193233410"
+									name="name"
 									placeholder="Full name"
 								/>
 							</div>
@@ -1204,23 +1202,23 @@
 								<input
 									type="text"
 									class="form-control email"
-									name="entry.1716856241"
+									name="email"
 									placeholder="Email address"
 								/>
 							</div>
 							<div class="form-group col-md-6">
 								<input
-									type="text"
+									type="Date"
 									class="form-control"
-									name="entry.1643229493"
+									name="Date"
 									placeholder="Date"
 								/>
 							</div>
 							<div class="form-group col-md-6">
 								<input
-									type="text"
+									type="Time"
 									class="form-control"
-									name="entry.552589574"
+									name="Time"
 									placeholder="Time"
 								/>
 							</div>
@@ -1230,7 +1228,7 @@
 									cols="30"
 									rows="4"
 									class="form-control"
-									name="entry.240394279"
+									name="Message"
 									placeholder="Message"
 								></textarea>
 							</div>
@@ -1238,7 +1236,7 @@
 								<a href="#" class="btn btn-brand"
 									>Send Message</a
 								>
-                                <div class="error-message my-4"></div>
+								<div class="error-message my-4"></div>
 							</div>
 						</div>
 					</div>
@@ -1288,11 +1286,6 @@
 				<div class="row">
 					<div class="col-12 intro-text">
 						<h1>Blog Posts</h1>
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing
-							elit. Recusandae sint temporibus natus optio eveniet
-							nobis accusantium?
-						</p>
 					</div>
 				</div>
 				<div class="row gy-4">
@@ -1304,10 +1297,7 @@
 								<h4>
 									<a href="#">How to make delicious food </a>
 								</h4>
-								<p>
-									Consectetur adipisicing elit. Consequatur,
-									architecto quisquam. Cumque!
-								</p>
+
 								<a href="#">Read More</a>
 							</div>
 						</div>
@@ -1320,10 +1310,7 @@
 								<h4>
 									<a href="#">How to make delicious food </a>
 								</h4>
-								<p>
-									Consectetur adipisicing elit. Consequatur,
-									architecto quisquam. Cumque!
-								</p>
+
 								<a href="#">Read More</a>
 							</div>
 						</div>
@@ -1336,10 +1323,7 @@
 								<h4>
 									<a href="#">How to make delicious food </a>
 								</h4>
-								<p>
-									Consectetur adipisicing elit. Consequatur,
-									architecto quisquam. Cumque!
-								</p>
+
 								<a href="#">Read More</a>
 							</div>
 						</div>
@@ -1352,10 +1336,7 @@
 								<h4>
 									<a href="#">How to make delicious food </a>
 								</h4>
-								<p>
-									Consectetur adipisicing elit. Consequatur,
-									architecto quisquam. Cumque!
-								</p>
+
 								<a href="#">Read More</a>
 							</div>
 						</div>
@@ -1375,8 +1356,6 @@
 								class="mb-4"
 								alt=""
 							/>
-							
-							
 						</div>
 						<div class="col-lg-3 ms-auto">
 							<h6 class="text-white mb-4">CONTACT</h6>
@@ -1401,14 +1380,32 @@
 						<div class="col-auto">
 							<p class="mb-0">Copyrights all rights reserved</p>
 						</div>
-						
 					</div>
 				</div>
 			</div>
 		</footer>
-
+		<!-- Ajax -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script>
+			$('#submit-form').submit(e => {
+				e.preventDefault()
+				$.ajax({
+					url: 'https://script.google.com/macros/s/AKfycbzGad8bq5scpeE2s9C80p8ytVfHWaulRX57J4gWQHxusj2tDSPFgRzph6MY5jlKB6i0/exec',
+					data: $('#submit-form').serialize(),
+					method: 'post',
+					success: function (response) {
+						alert('Form submitted successfully')
+						window.location.reload()
+						//window.location.href="https://google.com"
+					},
+					error: function (err) {
+						alert('Something Error')
+					},
+				})
+			})
+		</script>
 		<!-- Bootstrap Bundle Js -->
-        <script src="./assets/js/main.js"></script>
+		<script src="./assets/js/main.js"></script>
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
